@@ -1,0 +1,19 @@
+.board {
+  display: grid;
+  grid-gap: 10px;
+  grid-auto-flow: column;
+  height: 100%;
+}
+.lane {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  height: 100%;
+}
+
+.task {
+  display: flex;
+  border: 1px solid black;
+  margin: 1px;
+  padding: 10px 20px;
+}

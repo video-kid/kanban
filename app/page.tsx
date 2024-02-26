@@ -1,10 +1,11 @@
-/* Components */
-import { Counter } from "./components/Counter/Counter";
+/* Pages */
+
+import { KanbanPage } from './pages/kanban/KanbanPage';
 
 export default function IndexPage() {
-  return <Counter />;
+  return <KanbanPage />;
 }
 
 export const metadata = {
-  title: "Redux Toolkit",
+  title: 'Kanban',
 };
