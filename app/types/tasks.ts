@@ -1,5 +1,7 @@
+export type columns = 'todo' | 'done';
+
 export type task = {
   label: string;
-  column: string;
+  column: columns;
   id: string;
 };

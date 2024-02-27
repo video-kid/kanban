@@ -1,20 +1,22 @@
 /* Types */
-import { task } from '@/app/types/tasks';
+import type { columns } from '@/app/types/tasks';
+import type { DragEvent } from 'react';
 
 /* Instruments */
 import styles from '../kanban.module.css';
 
-/* Components */
-import Task from './Task';
-
 type laneProps = {
-  columnId: string;
-  dropHandler: (e: any, columnId: string) => void;
-  dragOverHandler: (e: any) => void;
+  columnId: columns;
+  dropHandler: (e: DragEvent, columnId: columns) => void;
+  dragOverHandler: (e: DragEvent) => void;
   children: JSX.Element;
 };
 
-const columnLabelMap = {
+type columnLabelMapType = {
+  [key in columns]: string;
+};
+
+const columnLabelMap: columnLabelMapType = {
   todo: 'To do',
   done: 'Done',
 };

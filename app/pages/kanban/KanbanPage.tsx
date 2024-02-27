@@ -4,10 +4,9 @@
 import Kanban from '@/app/components/Kanban/Kanban';
 
 /* Types */
-import { task } from '@/app/types/tasks';
+import type { task } from '@/app/types/tasks';
 
 /* Instruments */
-
 import { useFetcher } from '@/app/hooks/useFetcher/useFetcher';
 import useSWR from 'swr';
 

@@ -1,4 +1,7 @@
-import { task } from '../../types/tasks';
+/* Types */
+import type { task } from '../../types/tasks';
+
+/* Core */
 import { NextResponse } from 'next/server';
 
 const tasksList: Array<task> = [
