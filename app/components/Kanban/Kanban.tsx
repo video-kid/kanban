@@ -13,14 +13,7 @@ import styles from './kanban.module.css';
 /* Components */
 import Lane from './partials/Lane';
 import Task from './partials/Task';
-import { updateTasks } from './utils';
-
-const getGroupedTasks = (data: Array<task>): groupedTasksMapType =>
-  data.reduce(
-    (acc, current) =>
-      acc.set(current.column, [...(acc.get(current.column) || []), current]),
-    new Map()
-  );
+import { getGroupedTasks, getHoverAbove, updateTasks } from './utils';
 
 const Kanban = ({ data = [] }: { data?: Array<task> }) => {
   const [tasks, setTasks] = useState<groupedTasksMapType>(
@@ -36,6 +29,7 @@ const Kanban = ({ data = [] }: { data?: Array<task> }) => {
   const dragOverHandler = (e: DragEvent) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
+    getHoverAbove(e);
   };
 
   return (

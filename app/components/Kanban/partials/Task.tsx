@@ -19,7 +19,8 @@ const Task = ({ task }: taskProps) => {
     <div
       className={styles.task}
       draggable='true'
-      onDragStart={dragStartHandler}>
+      onDragStart={dragStartHandler}
+      data-id={task.id}>
       {task.label}
       {task.column}
       {task.id}
