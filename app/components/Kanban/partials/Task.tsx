@@ -11,8 +11,6 @@ type taskProps = {
 
 const Task = ({ task }: taskProps) => {
   const dragStartHandler = (e: DragEvent) => {
-    e.preventDefault();
-    if (!e.dataTransfer) return;
     e.dataTransfer.setData('text/html', JSON.stringify(task));
     e.dataTransfer.dropEffect = 'move';
   };

@@ -4,7 +4,7 @@
 import { useState } from 'react';
 
 /* Types */
-import type { columns, task } from '@/app/types/tasks';
+import type { columns, task, groupedTasksMapType } from '@/app/types/tasks';
 import type { DragEvent } from 'react';
 
 /* Instruments */
@@ -13,8 +13,7 @@ import styles from './kanban.module.css';
 /* Components */
 import Lane from './partials/Lane';
 import Task from './partials/Task';
-
-type groupedTasksMapType = Map<columns, Array<task>>;
+import { updateTasks } from './utils';
 
 const getGroupedTasks = (data: Array<task>): groupedTasksMapType =>
   data.reduce(
@@ -30,28 +29,12 @@ const Kanban = ({ data = [] }: { data?: Array<task> }) => {
 
   const dropHandler = (e: DragEvent, columnId: columns) => {
     e.preventDefault();
-    if (!e.dataTransfer) return;
-
     const data = JSON.parse(e.dataTransfer.getData('text/html'));
-
-    setTasks((prev) => {
-      const updatedSourceArray = [...(prev.get(data.column) || [])].filter(
-        ({ id }) => id !== data.id
-      );
-      const updatedDestinationArray = [
-        ...(prev.get(columnId) || []),
-        { ...data, column: columnId },
-      ];
-
-      prev.set(data.column, updatedSourceArray);
-      const updatedMap = new Map(prev).set(columnId, updatedDestinationArray);
-      return updatedMap;
-    });
+    setTasks((prev: groupedTasksMapType) => updateTasks(prev, data, columnId));
   };
 
   const dragOverHandler = (e: DragEvent) => {
     e.preventDefault();
-    if (!e.dataTransfer) return;
     e.dataTransfer.dropEffect = 'move';
   };
 

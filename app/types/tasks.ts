@@ -5,3 +5,5 @@ export type task = {
   column: columns;
   id: string;
 };
+
+export type groupedTasksMapType = Map<columns, Array<task>>;
