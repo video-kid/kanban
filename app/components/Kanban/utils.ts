@@ -20,15 +20,6 @@ export const updateTasks = (
   return updatedMap;
 };
 
-export const getHoverAbove = (e: DragEvent) => {
-  setTimeout(() => {
-    if (!(e.target instanceof HTMLDivElement)) {
-      return;
-    }
-    console.log(e.target.dataset);
-  }, 1500);
-};
-
 export const getGroupedTasks = (data: Array<task>): groupedTasksMapType =>
   data.reduce(
     (acc, current) =>

@@ -13,7 +13,7 @@ import styles from './kanban.module.css';
 /* Components */
 import Lane from './partials/Lane';
 import Task from './partials/Task';
-import { getGroupedTasks, getHoverAbove, updateTasks } from './utils';
+import { getGroupedTasks, updateTasks } from './utils';
 
 const Kanban = ({ data = [] }: { data?: Array<task> }) => {
   const [tasks, setTasks] = useState<groupedTasksMapType>(
@@ -29,9 +29,8 @@ const Kanban = ({ data = [] }: { data?: Array<task> }) => {
   const dragOverHandler = (e: DragEvent) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-    getHoverAbove(e);
   };
-
+  console.log(tasks);
   return (
     <div className={styles.board}>
       {[...tasks.keys()].map((columnKey) => (
