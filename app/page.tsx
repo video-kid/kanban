@@ -1,5 +1,4 @@
 /* Pages */
-
 import { KanbanPage } from './pages/kanban/KanbanPage';
 
 export default function IndexPage() {

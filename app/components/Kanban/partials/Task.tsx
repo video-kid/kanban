@@ -1,16 +1,29 @@
 /* Instruments */
 import styles from '../kanban.module.css';
 
+/* Types */
+import type { task } from '@/app/types/tasks';
+import type { DragEvent } from 'react';
+
 type taskProps = {
-  label: string;
-  currentSwimlane: string;
+  task: task;
 };
 
-const Task = ({ label, currentSwimlane }: taskProps) => {
+const Task = ({ task }: taskProps) => {
+  const dragStartHandler = (e: DragEvent) => {
+    e.dataTransfer.setData('text/html', JSON.stringify(task));
+    e.dataTransfer.dropEffect = 'move';
+  };
+
   return (
-    <div className={styles.task}>
-      {label}
-      {currentSwimlane}
+    <div
+      className={styles.task}
+      draggable='true'
+      onDragStart={dragStartHandler}
+      data-id={task.id}>
+      {task.label}
+      {task.column}
+      {task.id}
     </div>
   );
 };
